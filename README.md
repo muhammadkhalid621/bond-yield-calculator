@@ -9,7 +9,7 @@ Monorepo with:
 ## Features
 
 - Inputs: face value, annual coupon rate, market price, years to maturity, coupon frequency
-- Outputs: current yield, YTM, total interest, premium/discount indicator
+- Outputs: current yield, YTM, effective annual yield (EAY), total interest, premium/discount indicator
 - Cash flow schedule table with payment dates and running totals
 - Backend tests (unit + API integration)
 
@@ -77,6 +77,7 @@ VITE_API_BASE_URL=http://localhost:3001
 
 - YTM is calculated numerically (Newton-Raphson with bisection fallback) using the standard bond price equation.
 - Reported YTM is annualized nominal yield based on coupon frequency (`periodic_yield * frequency`).
+- EAY is reported as `((1 + periodic_yield)^frequency - 1)`.
 - Payment dates are projected forward from the calculation date.
 - `totalPeriods` is derived as `round(yearsToMaturity * couponFrequency)` for this take-home.
 

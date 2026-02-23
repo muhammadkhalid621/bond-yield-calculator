@@ -210,6 +210,10 @@ export default function App() {
                   <strong>{formatPercent(result.ytmPct)}</strong>
                 </article>
                 <article className="metric-card">
+                  <span>Effective Annual Yield</span>
+                  <strong>{formatPercent(result.effectiveAnnualYieldPct)}</strong>
+                </article>
+                <article className="metric-card">
                   <span>Total Interest Earned</span>
                   <strong>{formatCurrency(result.totalInterestEarned)}</strong>
                 </article>

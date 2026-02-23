@@ -13,6 +13,7 @@ describe('calculateBondMetrics', () => {
 
     expect(result.currentYieldPct).toBeCloseTo(5, 6);
     expect(result.ytmPct).toBeCloseTo(5, 4);
+    expect(result.effectiveAnnualYieldPct).toBeCloseTo(5, 4);
     expect(result.tradingStatus).toBe('par');
     expect(result.premiumDiscountAmount).toBe(0);
     expect(result.totalInterestEarned).toBe(500);
@@ -32,6 +33,7 @@ describe('calculateBondMetrics', () => {
     expect(result.premiumDiscountAmount).toBe(-50);
     expect(result.currentYieldPct).toBeCloseTo((50 / 950) * 100, 6);
     expect(result.ytmPct).toBeGreaterThan(result.currentYieldPct);
+    expect(result.effectiveAnnualYieldPct).toBeGreaterThan(result.ytmPct);
   });
 
   it('classifies premium bond and produces YTM lower than current yield', () => {
@@ -47,6 +49,7 @@ describe('calculateBondMetrics', () => {
     expect(result.tradingStatus).toBe('premium');
     expect(result.premiumDiscountAmount).toBe(80);
     expect(result.ytmPct).toBeLessThan(result.currentYieldPct);
+    expect(result.effectiveAnnualYieldPct).toBeGreaterThan(result.ytmPct);
   });
 
   it('handles zero-coupon bond and matches closed-form annual YTM', () => {
@@ -64,6 +67,7 @@ describe('calculateBondMetrics', () => {
     expect(result.currentYieldPct).toBe(0);
     expect(result.totalInterestEarned).toBe(0);
     expect(result.ytmPct).toBeCloseTo(expectedYtmPct, 3);
+    expect(result.effectiveAnnualYieldPct).toBeCloseTo(expectedYtmPct, 3);
   });
 
   it('builds a cash flow schedule with correct periods and terminal principal repayment', () => {
@@ -108,4 +112,3 @@ describe('calculateBondMetrics', () => {
     expect(result.cashFlowSchedule).toHaveLength(5);
   });
 });
-

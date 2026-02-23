@@ -57,6 +57,12 @@ For periodic yield `r`, coupon `C`, face `F`, periods `n`:
 - Returned YTM is annualized nominal yield:
   - `ytmPct = periodicYield * frequencyPerYear * 100`
 
+### Effective Annual Yield (EAY)
+
+- Derived from periodic YTM:
+  - `effectiveAnnualYieldPct = ((1 + periodicYield) ^ frequencyPerYear - 1) * 100`
+- For annual coupons, EAY equals nominal YTM.
+
 ## Cash Flow Schedule
 
 Each row includes:
@@ -77,7 +83,7 @@ Logic:
 
 1. Plain-vanilla fixed-rate bonds only
 2. No accrued interest / day-count / settlement lag / clean-vs-dirty pricing
-3. YTM is nominal annualized, not effective annual yield
+3. Both nominal annualized YTM and EAY are returned
 4. Period handling simplification:
 - `totalPeriods = round(yearsToMaturity * frequencyPerYear)`
 - Example: `2.5 years` with semi-annual coupons => `5 periods`
@@ -97,4 +103,3 @@ Potential interview extension:
 - Integration tests: `backend/src/bond/bond.controller.spec.ts`
   - endpoint success response shape and values
   - invalid payload rejection
-

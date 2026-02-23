@@ -24,6 +24,7 @@ export interface BondCalculationResult {
   totalPeriods: number;
   currentYieldPct: number;
   ytmPct: number;
+  effectiveAnnualYieldPct: number;
   totalInterestEarned: number;
   tradingStatus: 'premium' | 'discount' | 'par';
   premiumDiscountAmount: number;
@@ -218,6 +219,7 @@ export function calculateBondMetrics(input: BondCalculationInput): BondCalculati
     totalPeriods,
     currentYieldPct: round6(currentYieldPct),
     ytmPct: round6(ytmPct),
+    effectiveAnnualYieldPct: round6((Math.pow(1 + periodicYtm, frequencyPerYear) - 1) * 100),
     totalInterestEarned: round2(totalInterestEarned),
     tradingStatus,
     premiumDiscountAmount: round2(premiumDiscountAmount),

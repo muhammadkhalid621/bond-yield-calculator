@@ -51,6 +51,7 @@ describe('BondController (integration)', () => {
     );
     expect(response.body.currentYieldPct).toBeCloseTo((50 / 950) * 100, 6);
     expect(response.body.ytmPct).toBeGreaterThan(response.body.currentYieldPct);
+    expect(response.body.effectiveAnnualYieldPct).toBeGreaterThan(response.body.ytmPct);
     expect(response.body.cashFlowSchedule).toHaveLength(20);
     expect(response.body.cashFlowSchedule[0]).toEqual(
       expect.objectContaining({

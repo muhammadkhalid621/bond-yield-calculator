@@ -24,6 +24,7 @@ export interface BondCalculationResult {
   totalPeriods: number;
   currentYieldPct: number;
   ytmPct: number;
+  effectiveAnnualYieldPct: number;
   totalInterestEarned: number;
   tradingStatus: 'premium' | 'discount' | 'par';
   premiumDiscountAmount: number;
