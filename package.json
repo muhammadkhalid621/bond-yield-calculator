@@ -1,0 +1,10 @@
+{
+  "name": "bond-yield-calculator",
+  "private": true,
+  "workspaces": ["backend", "frontend"],
+  "scripts": {
+    "dev:backend": "npm --workspace backend run start:dev",
+    "dev:frontend": "npm --workspace frontend run dev",
+    "test:backend": "npm --workspace backend test"
+  }
+}
